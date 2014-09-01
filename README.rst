@@ -36,11 +36,11 @@ You will find a new Toolbar Menu "Pages" with the following items:
 * Add Page
 * Add Sub Page
 * Remove Page
+
+And the following new items:
 ----
 * Add Article / Remove Article
 
-Add Page / Sub Page - Add pages just like django CMS
-Remove Page - Removes plages just like django CMS
-Add Article - allows to add rich content, "Lead in", "body" and "key visual" to the current page.
+Add Article - Allows to add rich content, "Lead in", "body" and "key visual" to the current page.
 
-*And don't forget to choose "Rich Page" as the template for the current page ;) 
+* And don't forget to choose "Rich Page" as the template for the current page ;) 
