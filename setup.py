@@ -17,6 +17,7 @@ REQUIREMENTS = [
     'django-classy-tags',
     'south>=0.8',
     'django-hvad',
+    'aldryn_gallery',
     'unidecode',
 ]
 
