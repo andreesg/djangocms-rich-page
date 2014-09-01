@@ -16,10 +16,10 @@ from django.conf import settings
 class RichPage(TitleExtension):
     key_visual = FilerImageField(verbose_name=_('Lead Image'), blank=True, null=True)
     lead_in = HTMLField(_('Lead-in'),
-                        help_text=_('Will be displayed in lists, and at the start of the detail page (in bold)'), default="Your lead in text")
+                        help_text=_('Will be displayed as short description of the article.'), default="Your lead in text")
 
     body = HTMLField(_('Body'),
-                        help_text=_('Will be displayed in full page'), default="Your body text")
+                        help_text=_('Content of the article.'), default="Your body text")
     
     tags = TaggableManager(blank=True)
 
