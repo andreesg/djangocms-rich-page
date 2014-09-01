@@ -39,7 +39,8 @@ You will find a new Toolbar Menu "Pages" with the following items::
 
 And the following new items::
 
-    Add Article / Remove Article
+    Add Article / Edit Article
+    Remove Article
 
 Add Article - Allows to add rich content, "Lead in", "body" and "key visual" to the current page.
 
