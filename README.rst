@@ -25,8 +25,6 @@ Quick start
 
     $ python manage.py syncdb
 
-    or::
-
     $ python manage.py migrate
 
 =====
