@@ -14,28 +14,24 @@ Quick start
         'rich_page',
     )
 
-2. Include the polls URLconf in your project urls.py like this::
-
-    url(r'^polls/', include('polls.urls')),
-
-3. Include "rich_page/sidebar_right.html" template like this::
+2. Include "rich_page/sidebar_right.html" template like this::
     
     CMS_TEMPLATES = (
         ...
         ('rich_page/sidebar_right.html', 'Rich Page'),
     )
 
-4. Execute migration or syncdb to create the rich_page models::
+3. Execute migration or syncdb to create the rich_page models::
 
     $ python manage.py syncdb
 
-or::
+    or::
 
     $ python manage.py migrate
 
-****
+=====
 Usage
-****
+=====
 
 You will find a new Toolbar Menu "Pages" with new items:
 
