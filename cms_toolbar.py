@@ -8,7 +8,6 @@ from cms.utils.permissions import has_page_change_permission
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.utils.translation import ugettext_lazy as _
 from .models import RichPage, RichSlideshow
-from rich_collection.models import RichCollection
 from cms.utils.urlutils import add_url_parameters
 from cms.utils.permissions import get_user_sites_queryset, has_page_change_permission
 from cms.utils import get_language_from_request
@@ -27,11 +26,6 @@ RICHPAGE_MENU_DELETE = 'admin:rich_page_richpage_delete'
 # Rich Slideshow
 RICHSLIDESHOW_MENU_ADD = 'admin:rich_page_richslideshow_add'
 RICHSLIDESHOW_MENU_CHANGE = 'admin:rich_page_richslideshow_change'
-
-# Rich collection 
-RICHCOLLECTION_MENU_ADD = 'admin:rich_collection_richcollection_add'
-RICHCOLLECTION_MENU_CHANGE = 'admin:rich_collection_richcollection_change'
-RICHCOLLECTION_MENU_DELETE = 'admin:rich_collection_richcollection_delete'
 
 @toolbar_pool.register
 class RichPageToolbar(CMSToolbar):
@@ -77,9 +71,6 @@ class RichPageToolbar(CMSToolbar):
             # Rich page urls
             rich_page_add_url = reverse(RICHPAGE_MENU_ADD) + '?extended_object=%s' % self.title_page.pk
             
-            # Rich collection
-            rich_collection_add_url = reverse(RICHCOLLECTION_MENU_ADD) + '?extended_object=%s' % self.page.pk
-
             # Rich Slideshow
             rich_slideshow_add_url = reverse(RICHSLIDESHOW_MENU_ADD) + '?extended_object=%s' % self.page.pk
 
@@ -98,20 +89,15 @@ class RichPageToolbar(CMSToolbar):
             except RichPage.DoesNotExist:
                 rich_page = None
 
-            try:
-                rich_collection = RichCollection.objects.get(extended_object_id=self.page.id)
-            except RichCollection.DoesNotExist:
-                rich_collection = None
 
             try:
                 rich_slideshow = RichSlideshow.objects.get(extended_object_id=self.page.id)
             except RichSlideshow.DoesNotExist:
                 rich_slideshow = None
 
-            if not rich_page and not rich_collection:
+            if not rich_page:
                 menu.add_break(PAGE_MENU_BREAK)
                 menu.add_modal_item(_('Add article'), url=rich_page_add_url)
-                menu.add_modal_item(_('Add collection'), url=rich_collection_add_url)
 
             #
             # Check if the page has rich content or rich collection
@@ -136,16 +122,5 @@ class RichPageToolbar(CMSToolbar):
                 else:
                     menu.add_modal_item(_('Add slideshow'), url=rich_slideshow_add_url)
                 
-            elif rich_collection:
-                menu.add_break(PAGE_MENU_BREAK)
-
-                #
-                # Rich collection urls
-                #
-                rich_collection_change_url = reverse(RICHCOLLECTION_MENU_CHANGE, args=(rich_collection.pk,)) + '?extended_object=%s' % self.page.pk
-                rich_collection_delete_url = reverse(RICHCOLLECTION_MENU_DELETE, args=(rich_collection.pk,)) + '?extended_object=%s' % self.page.pk
-                
-                menu.add_modal_item(_('Edit collection'), url=rich_collection_change_url)
-                menu.add_modal_item(_('Delete collection'), url=rich_collection_delete_url)
 
                 
