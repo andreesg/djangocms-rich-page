@@ -1,0 +1,11 @@
+{% extends 'rich_page/base.html' %}
+{% load i18n thumbnail cms_tags %}
+
+{% block richpage_content %}
+<h1>{% render_model richpage "title" %}</h1>
+<h3>{% render_model richpage "lead_in" %}</h3>
+<h3>{% render_model richpage "body" %}</h3>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<h3></h3>
+{% endblock %}

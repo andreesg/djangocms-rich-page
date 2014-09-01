@@ -1,0 +1,45 @@
+=========
+Rich Page
+=========
+
+Adds rich content to django CMS 3 pages.
+
+Quick start
+-----------
+
+1. Add "rich_page" to your INSTALLED_APPS setting like this::
+
+    INSTALLED_APPS = (
+        ...
+        'rich_page',
+    )
+
+2. Include the polls URLconf in your project urls.py like this::
+
+    url(r'^polls/', include('polls.urls')),
+
+3. Include "rich_page/sidebar_right.html" template like this::
+    
+    CMS_TEMPLATES = (
+        ...
+        ('rich_page/sidebar_right.html', 'Rich Page'),
+    )
+
+4. Execute migration or syncdb to create the rich_page models::
+
+    $ python manage.py syncdb
+
+or::
+
+    $ python manage.py migrate
+
+****
+Usage
+****
+
+You will find a new Toolbar Menu "Pages" with new items:
+
+* Add Article
+
+Add Article - allows to add rich content, "Lead in", "body" and "key visual" to the current page.
+And don't forget to choose "Rich Page" as the template for the current page ;) 

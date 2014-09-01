@@ -1,0 +1,16 @@
+{% extends "rich_page/base.html" %}
+{% load i18n thumbnail cms_tags %}
+
+{% block richpage_content %}
+{% if latest_richpage_list %}
+    {% for richpage in latest_richpage_list %}
+        <h1><a href="{% url 'rich_page:detail' richpage.slug %}">{% render_model richpage "title" %}</a></h1>
+        <h3>{% render_model richpage "lead_in" %}</h3>
+    {% endfor %}
+{% else %}
+<p>No pages available</p>
+{% endif %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}

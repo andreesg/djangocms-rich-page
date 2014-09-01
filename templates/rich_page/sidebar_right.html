@@ -1,0 +1,69 @@
+{% extends "rich_page/base.html" %}
+{% load i18n cms_tags thumbnail menu_tags %}
+
+{% block body_class %}tpl-sidebar-right{% endblock %}
+
+{% block richpage_content %}
+<div class="row blog-list">
+    <div class="medium-17 column">
+        
+        {% if request.current_page.richcollection %}
+            <h1>{% render_model request.current_page "title" %}</h1>
+            <h3>{% render_model request.current_page.richcollection "lead_in" %}</h3>
+            <p>{% render_model request.current_page.richcollection "body" %}</p>
+            <ul class="blog-items">
+                {% for child in request.current_page.richcollection.get_richpages_by_filter %}
+                        {% if child.get_title_obj.richpage %}
+                        <li>
+                            {% if child.get_title_obj.richpage.key_visual_id %}
+
+                            <p class="blog-visual">
+                                <img src="{% thumbnail child.get_title_obj.richpage.key_visual 60x60 crop subject_location=child.get_title_obj.richpage.key_visual.subject_location %}" alt="" />
+                            </p>
+                            {% endif %}
+                            <h3><a href="{{ child.get_title_obj.get_absolute_url }}">{% render_model child "title" "title" %}</a></h3>
+                            {% block blog_meta %}
+                                <p class="blog-meta">
+                                    <span class="blog-date">{{ child.publication_date|date:"M/d" }}</span>
+                                    <span class="blog-author">{% trans "by" %} {{ child.created_by }}</span>
+                                </p>
+                            {% endblock %}
+                            <div class="blog-lead">{% render_model child.get_title_obj.richpage "lead_in" %}</div>
+                            <p class="blog-more"><a href="{{ child.get_absolute_url }}">{% trans "read more" %}</a></p>
+                        </li>
+                        {% else %}
+                           
+                        {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h1>{% render_model request.current_page "title" "title,menu_title" %}</h1>
+
+            {% if request.current_page.get_title_obj.richpage.key_visual_id %}<p class="blog-visual"><img src="{% thumbnail request.current_page.get_title_obj.richpage.key_visual 660x200 crop subject_location=request.current_page.get_title_obj.richpage.key_visual.subject_location %}" alt="" /></p>{% endif %}
+            
+            <p>
+            <h3>{% render_model request.current_page.get_title_obj.richpage "lead_in" %}</h3>
+            <p>{% render_model request.current_page.get_title_obj.richpage "body" %}</p>
+            
+            <div class="row">
+            {% if request.current_page.richslideshow %}
+                {% with 660 as width %}{% render_placeholder request.current_page.get_title_obj.richpage.slideshow %}{% endwith %}
+            {% endif %}
+            </div>
+
+        {% endif %}
+    </div>
+    <aside class="medium-7 column sidebar">
+        
+        {% if request.current_page.richcollection %}
+
+
+        {% elif request.current_page.get_title_obj.richpage %}
+            
+
+        {% else %}
+            
+        {% endif %}
+    </aside>
+</div>
+{% endblock richpage_content %}
