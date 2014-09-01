@@ -36,7 +36,7 @@ You will find a new Toolbar Menu "Pages" with the following items:
 * Add Page
 * Add Sub Page
 * Remove Page
-====
+____
 * Add Article / Remove Article
 
 Add Page / Sub Page - Add pages just like django CMS
