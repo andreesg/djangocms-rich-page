@@ -31,15 +31,15 @@ Quick start
 Usage
 =====
 
-You will find a new Toolbar Menu "Pages" with the following items:
+You will find a new Toolbar Menu "Pages" with the following items::
 
-* Add Page
-* Add Sub Page
-* Remove Page
+    * Add Page
+    * Add Sub Page
+    * Remove Page
 
-And the following new items:
-----
-* Add Article / Remove Article
+And the following new items::
+
+    * Add Article / Remove Article
 
 Add Article - Allows to add rich content, "Lead in", "body" and "key visual" to the current page.
 
