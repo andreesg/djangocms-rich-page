@@ -40,7 +40,7 @@ setup(
     description='Adds content to django CMS 3 pages.',
     author='André Gonçalves',
     author_email='andre@goncalves.me',
-    url='https://github.com/andreesg/rich-page',
+    url='https://github.com/andreesg/djangocms-rich-page',
     packages=find_packages(),
     license='LICENSE.txt',
     platforms=['OS Independent'],
